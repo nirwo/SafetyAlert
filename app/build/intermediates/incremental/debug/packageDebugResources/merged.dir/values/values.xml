@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="accent">#80CBC4</color>
+    <color name="accent_dark">#4DB6AC</color>
+    <color name="background">#F5F7F8</color>
+    <color name="black">#000000</color>
+    <color name="divider">#ECEFF1</color>
+    <color name="ic_launcher_background">#2196F3</color>
+    <color name="primary">#4A90A0</color>
+    <color name="primary_dark">#3B7A88</color>
+    <color name="safe_green">#81C784</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="text_primary">#263238</color>
+    <color name="text_secondary">#546E7A</color>
+    <color name="warning_red">#E57373</color>
+    <color name="warning_red_transparent">#40E57373</color>
+    <color name="white">#FFFFFF</color>
+    <integer name="alert_check_interval">60000</integer>
+    <integer name="location_update_interval">300000</integer>
+    <string name="alert_message">An alert has been detected in your area. Are you safe?</string>
+    <string name="alert_message_empty">Please enter an alert message</string>
+    <string name="alert_message_hint">Enter alert message</string>
+    <string name="alert_notification_message">A safety alert has been detected in your area. Please mark your status.</string>
+    <string name="alert_notification_title">Safety Alert in Your Area</string>
+    <string name="alert_section_description">Send emergency alerts to your group members</string>
+    <string name="alert_section_title">Emergency Alert</string>
+    <string name="alert_title">Safety Alert</string>
+    <string name="app_name">Safety Alert</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="create_group">Create Group</string>
+    <string name="default_web_client_id" translatable="false">961796162695-l6v3ifq7ne0uk0po014jrt75lut2vrng.apps.googleusercontent.com</string>
+    <string name="error_group_creation">Failed to create group</string>
+    <string name="error_invalid_email">Invalid email address</string>
+    <string name="error_location_permission">Location permission is required for alert monitoring</string>
+    <string name="error_network">Network error. Please try again</string>
+    <string name="gcm_defaultSenderId" translatable="false">961796162695</string>
+    <string name="google_api_key" translatable="false">AIzaSyBAGFwbAD3rZD4a3ZxFUy9m3a1iUSQ9JU8</string>
+    <string name="google_app_id" translatable="false">1:961796162695:android:83f369ac43b0a70fdc2422</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBAGFwbAD3rZD4a3ZxFUy9m3a1iUSQ9JU8</string>
+    <string name="google_maps_key">AIzaSyCcHlNZ6cICwynqrAmqo1c0PQhkK3HVi8o</string>
+    <string name="google_storage_bucket" translatable="false">safeupdater.firebasestorage.app</string>
+    <string name="google_web_client_id" translatable="false">YOUR_WEB_CLIENT_ID</string>
+    <string name="group_name_hint">Group Name</string>
+    <string name="loading">Loading…</string>
+    <string name="mark_safe">I\'m Safe</string>
+    <string name="mark_unsafe">Need Help</string>
+    <string name="member_emails_hint">Member Emails (comma-separated)</string>
+    <string name="notification_channel_description">Notifications for safety alerts and status updates</string>
+    <string name="notification_channel_name">Safety Alerts</string>
+    <string name="project_id" translatable="false">safeupdater</string>
+    <string name="red_alert_api_base_url" translatable="false">https://api.redalert.me/v1</string>
+    <string name="retry">Retry</string>
+    <string name="send_alert">Send Alert</string>
+    <string name="sign_in">Sign In with Google</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="status_update_safe">%1$s has marked themselves as safe</string>
+    <string name="status_update_title">Member Status Update</string>
+    <string name="status_update_unsafe">%1$s needs help!</string>
+    <string name="success_group_created">Group created successfully</string>
+    <string name="success_status_updated">Status updated successfully</string>
+    <string name="web_client_id">961796162695-l6v3ifq7ne0uk0po014jrt75lut2vrng.apps.googleusercontent.com</string>
+    <style name="AnimatedButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:stateListAnimator">@animator/button_state_list_anim</item>
+    </style>
+    <style name="ShapeAppearance.SafetyAlert.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+    <style name="ShapeAppearance.SafetyAlert.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+    <style name="ShapeAppearance.SafetyAlert.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+    <style name="TextAppearance.SafetyAlert.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    <style name="TextAppearance.SafetyAlert.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <style name="TextAppearance.SafetyAlert.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    <style name="TextAppearance.SafetyAlert.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="TextAppearance.SafetyAlert.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="Theme.SafetyAlert" parent="Theme.MaterialComponents.Light.NoActionBar">
+        
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorSecondaryVariant">@color/accent_dark</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar">true</item>
+        
+        
+        <item name="popupMenuStyle">@style/Widget.SafetyAlert.PopupMenu</item>
+        <item name="android:popupMenuStyle">@style/Widget.SafetyAlert.PopupMenu</item>
+        <item name="actionOverflowMenuStyle">@style/Widget.SafetyAlert.PopupMenu</item>
+        <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
+        
+        
+        <item name="textAppearanceHeadline6">@style/TextAppearance.SafetyAlert.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.SafetyAlert.Subtitle1</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.SafetyAlert.Body1</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.SafetyAlert.Caption</item>
+        <item name="textAppearanceButton">@style/TextAppearance.SafetyAlert.Button</item>
+        
+        
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.SafetyAlert.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.SafetyAlert.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.SafetyAlert.LargeComponent</item>
+    </style>
+    <style name="Widget.SafetyAlert.PopupMenu" parent="Widget.MaterialComponents.PopupMenu">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:itemBackground">@color/surface</item>
+    </style>
+</resources>

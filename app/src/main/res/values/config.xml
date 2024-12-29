@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="google_web_client_id" translatable="false">YOUR_WEB_CLIENT_ID</string>
+    <string name="red_alert_api_base_url" translatable="false">https://api.redalert.me/v1</string>
+    <integer name="alert_check_interval">60000</integer>
+    <integer name="location_update_interval">300000</integer>
+</resources>

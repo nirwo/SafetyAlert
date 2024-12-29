@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Safety Alert</string>
+    <string name="sign_in">Sign In with Google</string>
+    <string name="create_group">Create Group</string>
+    <string name="mark_safe">I\'m Safe</string>
+    <string name="mark_unsafe">Need Help</string>
+    <string name="alert_title">Safety Alert</string>
+    <string name="alert_message">An alert has been detected in your area. Are you safe?</string>
+    <string name="group_name_hint">Group Name</string>
+    <string name="member_emails_hint">Member Emails (comma-separated)</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="web_client_id">961796162695-l6v3ifq7ne0uk0po014jrt75lut2vrng.apps.googleusercontent.com</string>
+    
+    <!-- Alert Activity Strings -->
+    <string name="alert_section_title">Emergency Alert</string>
+    <string name="alert_section_description">Send emergency alerts to your group members</string>
+    <string name="alert_message_hint">Enter alert message</string>
+    <string name="send_alert">Send Alert</string>
+    <string name="alert_message_empty">Please enter an alert message</string>
+    
+    <!-- Notification Strings -->
+    <string name="notification_channel_name">Safety Alerts</string>
+    <string name="notification_channel_description">Notifications for safety alerts and status updates</string>
+    <string name="alert_notification_title">Safety Alert in Your Area</string>
+    <string name="alert_notification_message">A safety alert has been detected in your area. Please mark your status.</string>
+    <string name="status_update_title">Member Status Update</string>
+    <string name="status_update_safe">%1$s has marked themselves as safe</string>
+    <string name="status_update_unsafe">%1$s needs help!</string>
+    
+    <!-- Error Messages -->
+    <string name="error_location_permission">Location permission is required for alert monitoring</string>
+    <string name="error_group_creation">Failed to create group</string>
+    <string name="error_invalid_email">Invalid email address</string>
+    <string name="error_network">Network error. Please try again</string>
+    
+    <!-- Success Messages -->
+    <string name="success_group_created">Group created successfully</string>
+    <string name="success_status_updated">Status updated successfully</string>
+    
+    <!-- Misc -->
+    <string name="loading">Loading…</string>
+    <string name="retry">Retry</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+</resources>

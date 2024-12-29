@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Calming blue-green theme -->
+    <color name="primary">#4A90A0</color>
+    <color name="primary_dark">#3B7A88</color>
+    <color name="accent">#80CBC4</color>
+    <color name="accent_dark">#4DB6AC</color>
+    <color name="background">#F5F7F8</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="text_primary">#263238</color>
+    <color name="text_secondary">#546E7A</color>
+    <color name="safe_green">#81C784</color>
+    <color name="warning_red">#E57373</color>
+    <color name="warning_red_transparent">#40E57373</color>
+    <color name="divider">#ECEFF1</color>
+</resources>

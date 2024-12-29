@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "961796162695",
+    "project_id": "safeupdater",
+    "storage_bucket": "safeupdater.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961796162695:android:83f369ac43b0a70fdc2422",
+        "android_client_info": {
+          "package_name": "nir.wolff"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961796162695-of6a0r7ifsrbmcv5s5kp4svjfvnjc0b6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nir.wolff",
+            "certificate_hash": "752d98fcedc24f6bcd712cff71cf6413681ca4e2"
+          }
+        },
+        {
+          "client_id": "961796162695-l6v3ifq7ne0uk0po014jrt75lut2vrng.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAGFwbAD3rZD4a3ZxFUy9m3a1iUSQ9JU8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961796162695-l6v3ifq7ne0uk0po014jrt75lut2vrng.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

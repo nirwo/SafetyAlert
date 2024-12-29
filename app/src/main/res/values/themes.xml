@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.SafetyAlert" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Colors -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorSecondaryVariant">@color/accent_dark</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar">true</item>
+        
+        <!-- Menu and Popup styles -->
+        <item name="popupMenuStyle">@style/Widget.SafetyAlert.PopupMenu</item>
+        <item name="android:popupMenuStyle">@style/Widget.SafetyAlert.PopupMenu</item>
+        <item name="actionOverflowMenuStyle">@style/Widget.SafetyAlert.PopupMenu</item>
+        <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
+        
+        <!-- Text appearances -->
+        <item name="textAppearanceHeadline6">@style/TextAppearance.SafetyAlert.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.SafetyAlert.Subtitle1</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.SafetyAlert.Body1</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.SafetyAlert.Caption</item>
+        <item name="textAppearanceButton">@style/TextAppearance.SafetyAlert.Button</item>
+        
+        <!-- Shape appearances -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.SafetyAlert.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.SafetyAlert.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.SafetyAlert.LargeComponent</item>
+    </style>
+    
+    <!-- Widget Styles -->
+    <style name="Widget.SafetyAlert.PopupMenu" parent="Widget.MaterialComponents.PopupMenu">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:itemBackground">@color/surface</item>
+    </style>
+    
+    <!-- Text Styles -->
+    <style name="TextAppearance.SafetyAlert.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <style name="TextAppearance.SafetyAlert.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <style name="TextAppearance.SafetyAlert.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    
+    <style name="TextAppearance.SafetyAlert.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <style name="TextAppearance.SafetyAlert.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- Shape Styles -->
+    <style name="ShapeAppearance.SafetyAlert.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+    
+    <style name="ShapeAppearance.SafetyAlert.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+    
+    <style name="ShapeAppearance.SafetyAlert.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+</resources>
