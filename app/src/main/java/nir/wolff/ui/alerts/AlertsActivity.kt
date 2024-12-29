@@ -12,28 +12,26 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import nir.wolff.R
+import nir.wolff.api.PikudHaorefApi
 import nir.wolff.databinding.ActivityAlertsBinding
-import nir.wolff.network.AlertApi
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import nir.wolff.service.AlertService
 
 class AlertsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAlertsBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val auth = FirebaseAuth.getInstance()
-
-    private val retrofit = Retrofit.Builder()
-        .baseUrl("https://your-alert-api-url/") // Replace with your actual API URL
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-
-    private val alertApi = retrofit.create(AlertApi::class.java)
+    private val pikudHaorefApi = PikudHaorefApi()
+    private val alertService = AlertService()
+    private var alertCheckingJob: Job? = null
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1001
+        private const val ALERT_CHECK_INTERVAL = 30_000L // 30 seconds
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,11 +41,18 @@ class AlertsActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Alerts"
+        supportActionBar?.title = getString(R.string.alerts)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         setupViewPager()
         setupTestButton()
+        
+        // Start checking for alerts
+        if (checkLocationPermission()) {
+            startPeriodicAlertChecking()
+        } else {
+            requestLocationPermission()
+        }
     }
 
     private fun setupViewPager() {
@@ -56,8 +61,8 @@ class AlertsActivity : AppCompatActivity() {
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = when (position) {
-                0 -> "Current"
-                1 -> "History"
+                0 -> getString(R.string.current)
+                1 -> getString(R.string.history)
                 else -> ""
             }
         }.attach()
@@ -69,6 +74,87 @@ class AlertsActivity : AppCompatActivity() {
                 sendTestAlert()
             } else {
                 requestLocationPermission()
+            }
+        }
+    }
+
+    private fun startPeriodicAlertChecking() {
+        alertCheckingJob?.cancel()
+        alertCheckingJob = lifecycleScope.launch {
+            while (true) {
+                checkForAlerts()
+                delay(ALERT_CHECK_INTERVAL)
+            }
+        }
+    }
+
+    private suspend fun checkForAlerts() {
+        try {
+            val location = fusedLocationClient.lastLocation.await()
+            if (location != null) {
+                // Get active alerts from Pikud Haoref
+                val activeAlerts = pikudHaorefApi.getActiveAlerts()
+                
+                // Check if any alerts are relevant to current location
+                val relevantAlerts = activeAlerts.filter { alert ->
+                    pikudHaorefApi.isLocationInAlertArea(location, alert)
+                }
+                
+                if (relevantAlerts.isNotEmpty()) {
+                    // Show alert notification
+                    val alertText = relevantAlerts.joinToString("\n") { it.description }
+                    Toast.makeText(
+                        this@AlertsActivity,
+                        "⚠️ Alert: $alertText",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    
+                    // Refresh the current alerts fragment
+                    (binding.viewPager.adapter as? AlertsPagerAdapter)?.refreshCurrentAlerts()
+                }
+            }
+        } catch (e: Exception) {
+            Toast.makeText(
+                this@AlertsActivity,
+                "Error checking alerts: ${e.message}",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun sendTestAlert() {
+        lifecycleScope.launch {
+            try {
+                val location = fusedLocationClient.lastLocation.await()
+                if (location != null) {
+                    // Get active alerts and check if we're in an alert area
+                    val activeAlerts = pikudHaorefApi.getActiveAlerts()
+                    val inAlertArea = activeAlerts.any { alert ->
+                        pikudHaorefApi.isLocationInAlertArea(location, alert)
+                    }
+                    
+                    Toast.makeText(
+                        this@AlertsActivity,
+                        if (inAlertArea) getString(R.string.in_alert_area)
+                        else getString(R.string.no_active_alerts),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    
+                    // Refresh the current alerts fragment
+                    (binding.viewPager.adapter as? AlertsPagerAdapter)?.refreshCurrentAlerts()
+                } else {
+                    Toast.makeText(
+                        this@AlertsActivity,
+                        getString(R.string.location_not_available),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(
+                    this@AlertsActivity,
+                    getString(R.string.error_message, e.message),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
@@ -88,50 +174,6 @@ class AlertsActivity : AppCompatActivity() {
         )
     }
 
-    private fun sendTestAlert() {
-        lifecycleScope.launch {
-            try {
-                val location = fusedLocationClient.lastLocation.await()
-                if (location != null) {
-                    val userEmail = auth.currentUser?.email
-                    if (userEmail != null) {
-                        val response = alertApi.testAlert(
-                            userEmail = userEmail,
-                            latitude = location.latitude,
-                            longitude = location.longitude
-                        )
-                        
-                        if (response.isSuccessful) {
-                            Toast.makeText(
-                                this@AlertsActivity,
-                                "Test alert sent successfully",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } else {
-                            Toast.makeText(
-                                this@AlertsActivity,
-                                "Failed to send test alert",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                } else {
-                    Toast.makeText(
-                        this@AlertsActivity,
-                        "Location not available",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            } catch (e: Exception) {
-                Toast.makeText(
-                    this@AlertsActivity,
-                    "Error: ${e.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-    }
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -140,11 +182,11 @@ class AlertsActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                sendTestAlert()
+                startPeriodicAlertChecking()
             } else {
                 Toast.makeText(
                     this,
-                    "Location permission required to send test alerts",
+                    getString(R.string.location_permission_required),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -154,5 +196,10 @@ class AlertsActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        alertCheckingJob?.cancel()
     }
 }
