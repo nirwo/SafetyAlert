@@ -236,10 +236,10 @@ class MainActivity : AppCompatActivity() {
                         member.copy(
                             status = if (isSafe) GroupMember.Status.SAFE else GroupMember.Status.UNSAFE,
                             lastLocation = location?.let { loc ->
-                                GeoLocation(
+                                GroupMember.GeoLocation(
                                     latitude = loc.latitude,
                                     longitude = loc.longitude
-                                ).toMap()
+                                )
                             }
                         )
                     } else {
